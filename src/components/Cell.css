@@ -1,0 +1,10 @@
+.cell {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #666;
+  font-size: 2rem;
+  height: 4rem;
+  line-height: 4rem;
+  margin: 5px;
+  width: 4rem;
+}
