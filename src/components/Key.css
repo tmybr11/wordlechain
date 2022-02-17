@@ -1,0 +1,38 @@
+button.key {
+  background-color: #ccc;
+  border: 0;
+  border-radius: 5px;
+  color: #333;
+  font-size: 2rem;
+  height: 4rem;
+  line-height: 4rem;
+  margin: 5px;
+  text-align: center;
+  width: 3rem;
+}
+
+button.key.sm {
+  width: 3rem;
+}
+
+button.key.md {
+  width: 4.5rem;
+}
+
+button.key.lg {
+  width: 6rem;
+}
+
+button.valid-green {
+  background-color: rgb(88, 124, 88);
+  color: #fff;
+}
+
+button.valid-yellow {
+  background-color: rgb(200, 200, 0);
+}
+
+button.finished {
+  background-color: #333;
+  color: #fff;
+}

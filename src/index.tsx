@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {createContext} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Game from './components/Game';
+import { GameProvider } from './context/GameProvider';
 import reportWebVitals from './reportWebVitals';
 
 import {
@@ -13,12 +14,14 @@ import {
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="daily" element={<Game rows_number="6" />} />
-      </Routes>
-    </BrowserRouter>
+    <GameProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="daily" element={<Game rows_number="6" />} />
+        </Routes>
+      </BrowserRouter>
+    </GameProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

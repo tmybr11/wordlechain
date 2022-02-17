@@ -1,9 +1,20 @@
+import Alphabet from '../classes/Alphabet'
+import AlphabetService from './AlphabetService'
+
 class EnglishService {
+  lang: string
+
   constructor() {
+    this.lang = 'en'
+  }
+
+  getAlphabet() : Alphabet {
+    return new AlphabetService().createFromLanguage(this.lang)
   }
 
   getWord() {
     const words = this.words()
+    return 'ghost'
     return words[Math.floor(Math.random() * words.length)]
   }
 
@@ -55,7 +66,58 @@ class EnglishService {
       'heart',
       'demon',
       'angel',
-      'trash'
+      'trash',
+      'belly',
+      'swarm',
+      'liver',
+      'erase',
+      'skull',
+      'shark',
+      'whale',
+      'sport',
+      'react',
+      'total',
+      'fears',
+      'spade',
+      'trial',
+      'mills',
+      'juice',
+      'plane',
+      'train',
+      'bulls',
+      'eagle',
+      'llama',
+      'ready',
+      'party',
+      'music',
+      'drink',
+      'drugs',
+      'beats',
+      'phone',
+      'house',
+      'weary',
+      'bound',
+      'muddy',
+      'dummy',
+      'shout',
+      'dance',
+      'radio',
+      'store',
+      'sandy',
+      'peach',
+      'beach',
+      'ghost',
+      'moist',
+      'pants',
+      'screw',
+      'gates',
+      'widow',
+      'horse',
+      'trams',
+      'grave',
+      'swine',
+      'wells',
+      'jeans'
     ]
   }
 }

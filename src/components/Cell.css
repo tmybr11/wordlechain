@@ -8,3 +8,16 @@
   margin: 5px;
   width: 4rem;
 }
+
+.cell.valid-green {
+  background-color: rgb(88, 124, 88);
+  color: #fff;
+}
+
+.cell.valid-yellow {
+  background-color: rgb(200, 200, 0);
+}
+
+.cell.finished {
+  background-color: #ddd;
+}

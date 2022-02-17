@@ -1,8 +1,22 @@
 import './Cell.css';
 
-function Cell(props: any) {
+function Cell({ id, rowId, letter, finished, onChange, valid }: any) {
+  let validClass = ''
+
+  if(finished && valid === true) {
+    validClass = 'valid-green'
+  } else if(finished && valid === false) {
+    validClass = 'valid-yellow'
+  }
+
+  let finishedClass = ''
+
+  if(finished && typeof valid === 'undefined') {
+    finishedClass = 'finished'
+  }
+
   return (
-    <div className="cell text-center">{props.letter}</div>
+    <div className={'cell text-center ' + validClass + ' ' + finishedClass}>{letter}</div>
   );
 }
 

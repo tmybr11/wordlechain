@@ -1,11 +1,91 @@
 import Cell from "./Cell";
+import { useContext, useState, useEffect } from 'react';
+import { GameContext } from '../context/GameProvider';
+import Validator from '../classes/Validator'
 
-function Row(props: any) {
+function Row({ id, cellsNumber }: any) {
+  cellsNumber = parseInt(cellsNumber)
+  const [word, setWord] = useState('');
+  const [finished, setFinished] = useState(false);
+  const [validation, setValidation] = useState<(boolean|null)[]>(Array.from(Array(cellsNumber).keys()).map((i: number) => {
+    return null
+  }));
+  
+  const [letters, setLetters] = useState<string[]>(Array.from(Array(cellsNumber).keys()).map((i: number) => {
+    return ''
+  }));
+
+  const { 
+    currentCell, 
+    currentRow, 
+    lastKey, 
+    alphabet,
+    setLastKey, 
+    secretWord, 
+    setCurrentCell, 
+    lastCell, 
+    setLastCell, 
+    setCurrentRow, 
+    setAlphabet
+  } = useContext(GameContext)
+
+  const onChange = (letter: string) => {
+    if(letter !== 'Delete') setWord(word + letter)
+    else setWord(word.slice(0, -1))
+  }
+
+  useEffect(() => {
+    const isCurrentRow = currentRow === id
+    const sendKey = lastKey === 'Send'
+    const deleteKey = lastKey === 'Delete'
+    const rowFull = currentCell === cellsNumber
+
+    if(isCurrentRow && lastKey !== '') {
+      if(!rowFull && !deleteKey && !sendKey) {
+        setLastCell(currentCell)
+        letters[currentCell] = lastKey
+        setCurrentCell(currentCell + 1)
+      } else if(deleteKey) {
+        if(lastCell - 1 >= -1) {
+          setLastCell(lastCell - 1)
+        }
+        if(currentCell - 1 >= 0) {
+          letters[currentCell - 1] = ''
+          setCurrentCell(currentCell - 1)
+        }
+      } else if(sendKey) {
+        setFinished(true)
+        setCurrentRow(currentRow + 1)
+        setCurrentCell(0)
+        setLastCell(-1)
+
+        let i = 0
+        const secretWordSplit:string[] = secretWord.toUpperCase().split('')
+
+        const validation = new Validator(letters, secretWordSplit).validate()
+
+        letters.forEach((letter, ix) => {
+          let status = -1
+
+          if(validation[ix] === true) status = 2
+          else if(validation[ix] === false) status = 1
+          else if(typeof validation[ix] === 'undefined') status = 0
+
+          alphabet.updateLetter(letter, status)
+        })
+
+        setAlphabet(alphabet)
+        setValidation(validation)
+      }
+      setLastKey('')
+    }
+  },[lastKey])
+
   return (
     <div className="flex">
       {
-        Array.from(Array(parseInt(props.cells_number)).keys()).map((i: number) => {
-          return <Cell key={'cell-' + i} />
+        Array.from(Array(cellsNumber).keys()).map((i: number) => {
+          return <Cell key={i} id={i} letter={letters[i]} onChange={onChange} finished={finished} rowId={id} valid={validation[i]} />
         })
       }
     </div>
