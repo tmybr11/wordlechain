@@ -1,0 +1,9 @@
+#main-menu {
+  margin: auto;
+  width: 30%;
+}
+
+#main-menu > a {
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}

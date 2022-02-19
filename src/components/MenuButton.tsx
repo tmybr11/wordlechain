@@ -1,8 +1,8 @@
-import Button from './Button'
+import { Link } from 'react-router-dom'
 
-function MenuButton(props: any) {
+function MenuButton({ text, path }: any) {
   return (
-    <Button text={props.text}/>
+    <Link className="waves-effect waves-light btn-large deep-purple darken-1" to={path}>{text}</Link>
   );
 }
 

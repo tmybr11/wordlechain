@@ -1,4 +1,4 @@
-import Letter from '../classes/Letter'
+import './Key.css'
 
 function Key({onAction, letter, text, size}: any) {
   let status = ''

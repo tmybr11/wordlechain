@@ -1,4 +1,4 @@
-import React, {createContext} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -19,6 +19,8 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="daily" element={<Game rows_number="6" />} />
+          <Route path="free" element={<Game rows_number="6" />} />
+          <Route path="challenge" element={<Game rows_number="6" />} />
         </Routes>
       </BrowserRouter>
     </GameProvider>

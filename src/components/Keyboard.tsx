@@ -1,5 +1,4 @@
 import Key from './Key'
-import './Key.css'
 import { useContext, useEffect } from 'react'
 import { GameContext } from '../context/GameProvider'
 

@@ -1,7 +1,7 @@
 import Alphabet from '../classes/Alphabet'
 import Letter from '../classes/Letter'
 
-class AlphabetService {
+class AlphabetFactory {
   config: any
 
   constructor() {
@@ -23,4 +23,4 @@ class AlphabetService {
   }
 }
 
-export default AlphabetService;
+export default AlphabetFactory;

@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Alphabet from '../classes/Alphabet'
+import AlphabetFactory from '../services/AlphabetFactory'
 import EnglishService from '../services/EnglishService'
 
 const GameContext = React.createContext({
@@ -19,13 +20,19 @@ const GameContext = React.createContext({
 
 function GameProvider(props: any) {
   const service = new EnglishService()
-
-  const [alphabet, setAlphabet] = useState<Alphabet>(service.getAlphabet());
-  const [secretWord, setSecretWord] = useState(service.getWord());
+  const alphabetFactory = new AlphabetFactory()
+  const [alphabet, setAlphabet] = useState<Alphabet>(alphabetFactory.createFromLanguage('en'));
+  const [secretWord, setSecretWord] = useState('');
   const [currentRow, setCurrentRow] = useState(0);
   const [currentCell, setCurrentCell] = useState(0);
   const [lastCell, setLastCell] = useState(-1);
   const [lastKey, setLastKey] = useState('');
+
+  useEffect(() => {
+    service.random().then((randomWord) => {
+      setSecretWord(randomWord['data']['word'])
+    })
+  }, [])
 
   return (
     <GameContext.Provider value={
@@ -46,7 +53,7 @@ function GameProvider(props: any) {
     }>
       {props.children}
     </GameContext.Provider>
-  );
+  )
 }
 
 export { GameProvider, GameContext };
