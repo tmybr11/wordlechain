@@ -1,7 +1,7 @@
 import Cell from "./Cell";
 import { useContext, useState, useEffect } from 'react';
 import { GameContext } from '../context/GameProvider';
-import Validator from '../classes/Validator'
+import ValidationService from '../services/ValidationService'
 
 function Row({ id, cellsNumber }: any) {
   cellsNumber = parseInt(cellsNumber)
@@ -21,7 +21,6 @@ function Row({ id, cellsNumber }: any) {
     lastKey, 
     alphabet,
     setLastKey, 
-    secretWord, 
     setCurrentCell, 
     lastCell, 
     setLastCell, 
@@ -60,23 +59,23 @@ function Row({ id, cellsNumber }: any) {
         setLastCell(-1)
 
         let i = 0
-        const secretWordSplit:string[] = secretWord.toUpperCase().split('')
+        new ValidationService().valid(letters.join('')).then((validation: any) => {
+          validation = validation.data
+          letters.forEach((letter, ix) => {
+            let status = -1
+  
+            if(validation[ix] === true) status = 2
+            else if(validation[ix] === false) status = 1
+            else if(typeof validation[ix] === 'undefined' || validation[ix] === null) status = 0
+  
+            alphabet.updateLetter(letter, status)
+          })
 
-        const validation = new Validator(letters, secretWordSplit).validate()
-
-        letters.forEach((letter, ix) => {
-          let status = -1
-
-          if(validation[ix] === true) status = 2
-          else if(validation[ix] === false) status = 1
-          else if(typeof validation[ix] === 'undefined') status = 0
-
-          alphabet.updateLetter(letter, status)
+          setAlphabet(alphabet)
+          setValidation(validation)
         })
-
-        setAlphabet(alphabet)
-        setValidation(validation)
       }
+      
       setLastKey('')
     }
   },[lastKey])

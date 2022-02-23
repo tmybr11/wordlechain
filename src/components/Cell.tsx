@@ -11,7 +11,7 @@ function Cell({ id, rowId, letter, finished, onChange, valid }: any) {
 
   let finishedClass = ''
 
-  if(finished && typeof valid === 'undefined') {
+  if(finished && (typeof valid === 'undefined' || valid === null)) {
     finishedClass = 'finished'
   }
 

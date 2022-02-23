@@ -1,12 +1,8 @@
-import { GameContext } from '../context/GameProvider'
 import Keyboard from './Keyboard'
 import Row from './Row'
-import { useContext } from 'react'
 
 function Game(props: any) {
-  const { secretWord } = useContext(GameContext)
-
-  return secretWord !== '' ? (
+  return (
     <div className="flex flex-col items-center">
       {
         Array.from(Array(parseInt(props.rows_number)).keys()).map((i: number) => {
@@ -15,7 +11,7 @@ function Game(props: any) {
       }
       <Keyboard />
     </div>
-  ) : null
+  )
 }
 
 export default Game;
