@@ -53,12 +53,7 @@ function Row({ id, cellsNumber }: any) {
           setCurrentCell(currentCell - 1)
         }
       } else if(sendKey) {
-        setFinished(true)
-        setCurrentRow(currentRow + 1)
-        setCurrentCell(0)
-        setLastCell(-1)
-
-        let i = 0
+        if(letters.filter((l) => { return l !== '' }).length < 5) return
         new ValidationService().valid(letters.join('')).then((validation: any) => {
           validation = validation.data
           letters.forEach((letter, ix) => {
@@ -71,6 +66,10 @@ function Row({ id, cellsNumber }: any) {
             alphabet.updateLetter(letter, status)
           })
 
+          setFinished(true)
+          setCurrentRow(currentRow + 1)
+          setCurrentCell(0)
+          setLastCell(-1)
           setAlphabet(alphabet)
           setValidation(validation)
         })

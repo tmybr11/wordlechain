@@ -9,7 +9,7 @@ function Key({onAction, letter, text, size}: any) {
     } else if(letter.status === 1) {
       status = 'valid-yellow'
     } else if(letter.status === 0) {
-      status = 'finished'
+      status = 'not-there'
     }
   }
 

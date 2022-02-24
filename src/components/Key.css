@@ -32,7 +32,7 @@ button.valid-yellow {
   background-color: rgb(200, 200, 0);
 }
 
-button.finished {
+button.not-there {
   background-color: #333;
   color: #fff;
 }
