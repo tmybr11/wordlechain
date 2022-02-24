@@ -11,7 +11,7 @@ function Row({ id, cellsNumber }: any) {
     return null
   }));
   
-  const [letters, setLetters] = useState<string[]>(Array.from(Array(cellsNumber).keys()).map((i: number) => {
+  const [letters] = useState<string[]>(Array.from(Array(cellsNumber).keys()).map((i: number) => {
     return ''
   }));
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Alphabet from '../classes/Alphabet'
 import AlphabetFactory from '../services/AlphabetFactory'
 import EnglishService from '../services/EnglishService'

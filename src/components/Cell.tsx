@@ -1,6 +1,6 @@
 import './Cell.css';
 
-function Cell({ id, rowId, letter, finished, onChange, valid }: any) {
+function Cell({ letter, finished, valid }: any) {
   let validClass = ''
 
   if(finished && valid === true) {
