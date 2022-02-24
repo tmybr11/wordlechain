@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Alphabet from '../classes/Alphabet'
 import AlphabetFactory from '../services/AlphabetFactory'
-import EnglishService from '../services/EnglishService'
 
 const GameContext = React.createContext({
   alphabet: new Alphabet([[]]),
@@ -17,7 +16,6 @@ const GameContext = React.createContext({
 });
 
 function GameProvider(props: any) {
-  const service = new EnglishService()
   const alphabetFactory = new AlphabetFactory()
   const [alphabet, setAlphabet] = useState<Alphabet>(alphabetFactory.createFromLanguage('en'));
   const [currentRow, setCurrentRow] = useState(0);
